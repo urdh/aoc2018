@@ -4,6 +4,7 @@ module Main
 
 import qualified Day1.Solutions     as Day1
 import qualified Day2.Solutions     as Day2
+import qualified Day4.Solutions     as Day4
 import           System.Environment
 
 day1 :: IO ()
@@ -16,13 +17,22 @@ day2 = do
   putStrLn ("Day 2 -- Checksum: " ++ show (Day2.part1 Day2.input))
   putStrLn ("Day 2 -- Common characters: " ++ show (Day2.part2 Day2.input))
 
+day4 :: IO ()
+day4 = do
+  putStrLn
+    ("Day 4 -- Best guard/minute combination (strategy 1): " ++
+     show (Day4.part1 Day4.input))
+  putStrLn
+    ("Day 4 -- Best guard/minute combination (strategy 2): " ++
+     show (Day4.part2 Day4.input))
+
 help :: IO ()
 help = do
   prog <- getProgName
   putStrLn ("Usage: " ++ prog ++ " <day>")
 
 dispatch :: [(String, IO ())]
-dispatch = [("1", day1), ("2", day2), ("help", help)]
+dispatch = [("1", day1), ("2", day2), ("4", day4), ("help", help)]
 
 main :: IO ()
 main = do
