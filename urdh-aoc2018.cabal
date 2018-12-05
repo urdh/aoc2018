@@ -12,6 +12,7 @@ executable urdh-aoc2018
   other-modules:       Day1.Solutions
                      , Day2.Solutions
                      , Day4.Solutions, Day4.Parsing
+                     , Day5.Solutions
   build-depends:       base >=4.11 && <4.12
                      , file-embed
                      , containers
@@ -25,6 +26,7 @@ test-suite urdh-aoc2018-tests
   other-modules:    Day1.Solutions, Day1.Tests
                   , Day2.Solutions, Day2.Tests
                   , Day4.Solutions, Day4.Tests, Day4.Parsing
+                  , Day5.Solutions, Day5.Tests
   build-Depends:    base >= 3 && < 5
                   , tasty
                   , tasty-hunit

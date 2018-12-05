@@ -5,6 +5,7 @@ module Main
 import qualified Day1.Solutions     as Day1
 import qualified Day2.Solutions     as Day2
 import qualified Day4.Solutions     as Day4
+import qualified Day5.Solutions     as Day5
 import           System.Environment
 
 day1 :: IO ()
@@ -26,13 +27,19 @@ day4 = do
     ("Day 4 -- Best guard/minute combination (strategy 2): " ++
      show (Day4.part2 Day4.input))
 
+day5 :: IO ()
+day5 = do
+  putStrLn
+    ("Day 5 -- Resulting polymer length: " ++ show (Day5.part1 Day5.input))
+  putStrLn ("Day 5 -- Best polymer length: " ++ show (Day5.part2 Day5.input))
+
 help :: IO ()
 help = do
   prog <- getProgName
   putStrLn ("Usage: " ++ prog ++ " <day>")
 
 dispatch :: [(String, IO ())]
-dispatch = [("1", day1), ("2", day2), ("4", day4), ("help", help)]
+dispatch = [("1", day1), ("2", day2), ("4", day4), ("5", day5), ("help", help)]
 
 main :: IO ()
 main = do
