@@ -11,6 +11,7 @@ executable urdh-aoc2018
   main-is:             Main.hs
   other-modules:       Day1.Solutions
                      , Day2.Solutions
+                     , Day3.Solutions, Day3.Parsing
                      , Day4.Solutions, Day4.Parsing
                      , Day5.Solutions
   build-depends:       base >=4.11 && <4.12
@@ -25,6 +26,7 @@ test-suite urdh-aoc2018-tests
   main-is:          Tests.hs
   other-modules:    Day1.Solutions, Day1.Tests
                   , Day2.Solutions, Day2.Tests
+                  , Day3.Solutions, Day3.Tests, Day3.Parsing
                   , Day4.Solutions, Day4.Tests, Day4.Parsing
                   , Day5.Solutions, Day5.Tests
   build-Depends:    base >= 3 && < 5

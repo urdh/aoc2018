@@ -4,6 +4,7 @@ module Main
 
 import qualified Day1.Solutions     as Day1
 import qualified Day2.Solutions     as Day2
+import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
 import qualified Day5.Solutions     as Day5
 import           System.Environment
@@ -17,6 +18,11 @@ day2 :: IO ()
 day2 = do
   putStrLn ("Day 2 -- Checksum: " ++ show (Day2.part1 Day2.input))
   putStrLn ("Day 2 -- Common characters: " ++ show (Day2.part2 Day2.input))
+
+day3 :: IO ()
+day3 = do
+  putStrLn ("Day 3 -- Contested area: " ++ show (Day3.part1 Day3.input))
+  putStrLn ("Day 3 -- Uncontested claims: " ++ show (Day3.part2 Day3.input))
 
 day4 :: IO ()
 day4 = do
@@ -39,7 +45,14 @@ help = do
   putStrLn ("Usage: " ++ prog ++ " <day>")
 
 dispatch :: [(String, IO ())]
-dispatch = [("1", day1), ("2", day2), ("4", day4), ("5", day5), ("help", help)]
+dispatch =
+  [ ("1", day1)
+  , ("2", day2)
+  , ("3", day3)
+  , ("4", day4)
+  , ("5", day5)
+  , ("help", help)
+  ]
 
 main :: IO ()
 main = do
