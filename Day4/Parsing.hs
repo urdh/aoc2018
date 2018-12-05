@@ -5,6 +5,7 @@ module Day4.Parsing
   , parseData
   ) where
 
+import qualified Control.Monad                as Monad
 import           Data.List
 import           Data.Time
 import           Text.ParserCombinators.ReadP
@@ -27,7 +28,7 @@ timestamp = readPTime False defaultTimeLocale "[%Y-%m-%d %H:%M]"
 integer :: ReadP Int
 integer = fmap read (many1 digit)
   where
-    digit = satisfy (\char -> char >= '0' && char <= '9')
+    digit = satisfy (Monad.liftM2 (&&) (>= '0') (<= '9'))
 
 wakeup :: ReadP (Event, Int)
 wakeup = do
@@ -54,13 +55,13 @@ event = do
   return (Entry t (fst e) (snd e))
 
 parseLine :: String -> Entry
-parseLine = fst . head . (readP_to_S event)
+parseLine = fst . head . readP_to_S event
 
 fillGuard :: Int -> [Entry] -> [Entry]
 fillGuard _ [] = []
 fillGuard g (x:xs)
-  | (==) BeginShift (evt x) = [x] ++ (fillGuard (guard x) xs)
-  | otherwise = [(Entry (time x) (evt x) g)] ++ (fillGuard g xs)
+  | (==) BeginShift (evt x) = x : fillGuard (guard x) xs
+  | otherwise = Entry (time x) (evt x) g : fillGuard g xs
 
 parseData :: [String] -> [Entry]
-parseData = (fillGuard 0) . (sortOn time) . (map parseLine)
+parseData = fillGuard 0 . sortOn time . map parseLine

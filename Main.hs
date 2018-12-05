@@ -48,7 +48,7 @@ dispatch ["3"]  = day3
 dispatch ["4"]  = day4
 dispatch ["5"]  = day5
 dispatch [_]    = exitFailure
-dispatch (x:xs) = (dispatch [x]) >> (dispatch xs)
+dispatch (x:xs) = dispatch [x] >> dispatch xs
 
 main :: IO ()
 main = getArgs >>= dispatch >> exitSuccess

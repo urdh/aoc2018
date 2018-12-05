@@ -6,6 +6,7 @@ module Day3.Solutions
   , part2
   ) where
 
+import           Control.Monad
 import           Data.FileEmbed
 import           Data.List
 import           Day3.Parsing   (Rectangle (..), parseLine)
@@ -17,17 +18,17 @@ top :: Rectangle -> Int
 top = snd . position
 
 right :: Rectangle -> Int
-right r = (left r) + (width r) - 1
+right = subtract 1 . liftM2 (+) left width
 
 bottom :: Rectangle -> Int
-bottom r = (top r) + (height r) - 1
+bottom = subtract 1 . liftM2 (+) top height
 
 isInside :: (Int, Int) -> Rectangle -> Bool
 isInside (x, y) r =
   ((left r) <= x) && (x <= (right r)) && ((top r) <= y) && (y <= (bottom r))
 
 isInsideCount :: [Rectangle] -> (Int, Int) -> Int
-isInsideCount rs pos = (length . (filter id) . map (isInside pos)) rs
+isInsideCount = flip (((length . filter id) .) . map . isInside)
 
 intersects :: Rectangle -> Rectangle -> Bool
 intersects r1 r2 =
@@ -35,11 +36,10 @@ intersects r1 r2 =
   intersect1D (top r1, bottom r1) (top r2, bottom r2)
   where
     intersect1D (x, y) (u, w) =
-      not $ (x < min u w && y < min u w) || (x > max u w && y > max u w)
+      not (x < min u w && y < min u w || x > max u w && y > max u w)
 
 overlapArea :: [Rectangle] -> Int
-overlapArea rs =
-  (length . (filter ((<) 1)) . (map $ isInsideCount rs) . coords) rs
+overlapArea = ((length . filter (1 <)) .) =<< (. coords) . map . isInsideCount
   where
     coords rs =
       [ (x, y)
@@ -48,12 +48,12 @@ overlapArea rs =
       ]
 
 part1 :: [(Int, Rectangle)] -> Int
-part1 = overlapArea . (map snd)
+part1 = overlapArea . map snd
 
 part2 :: [(Int, Rectangle)] -> Maybe Int
-part2 rs = fmap fst (find (flip ((not .) . any . contested) rs) rs)
+part2 = fmap fst . (find =<< flip ((not .) . any . contested))
   where
     contested r1 r2 = (intersects (snd r1) (snd r2)) && ((fst r1) /= (fst r2))
 
 input :: [(Int, Rectangle)]
-input = (map parseLine) . lines $ $(embedStringFile "Day3/input.txt")
+input = map parseLine (lines $(embedStringFile "Day3/input.txt"))
