@@ -8,6 +8,7 @@ import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
 import qualified Day5.Solutions     as Day5
 import           System.Environment
+import           System.Exit
 
 day1 :: IO ()
 day1 = do
@@ -39,23 +40,15 @@ day5 = do
     ("Day 5 -- Resulting polymer length: " ++ show (Day5.part1 Day5.input))
   putStrLn ("Day 5 -- Best polymer length: " ++ show (Day5.part2 Day5.input))
 
-help :: IO ()
-help = do
-  prog <- getProgName
-  putStrLn ("Usage: " ++ prog ++ " <day>")
-
-dispatch :: [(String, IO ())]
-dispatch =
-  [ ("1", day1)
-  , ("2", day2)
-  , ("3", day3)
-  , ("4", day4)
-  , ("5", day5)
-  , ("help", help)
-  ]
+dispatch :: [String] -> IO ()
+dispatch []     = exitSuccess
+dispatch ["1"]  = day1
+dispatch ["2"]  = day2
+dispatch ["3"]  = day3
+dispatch ["4"]  = day4
+dispatch ["5"]  = day5
+dispatch [_]    = exitFailure
+dispatch (x:xs) = (dispatch [x]) >> (dispatch xs)
 
 main :: IO ()
-main = do
-  args <- getArgs
-  let (Just action) = lookup (head $ args ++ ["help"]) dispatch
-  action
+main = getArgs >>= dispatch >> exitSuccess
