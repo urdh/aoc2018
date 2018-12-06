@@ -7,6 +7,7 @@ import qualified Day2.Solutions     as Day2
 import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
 import qualified Day5.Solutions     as Day5
+import qualified Day6.Solutions     as Day6
 import           System.Environment
 import           System.Exit
 
@@ -40,6 +41,14 @@ day5 = do
     ("Day 5 -- Resulting polymer length: " ++ show (Day5.part1 Day5.input))
   putStrLn ("Day 5 -- Best polymer length: " ++ show (Day5.part2 Day5.input))
 
+day6 :: IO ()
+day6 = do
+  putStrLn
+    ("Day 6 -- Distance-maximizing area: " ++ show (Day6.part1 250 Day6.input))
+  putStrLn
+    ("Day 6 -- Neighbour-maximizing area: " ++
+     show (Day6.part2 10000 Day6.input))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -47,6 +56,7 @@ dispatch ["2"]  = day2
 dispatch ["3"]  = day3
 dispatch ["4"]  = day4
 dispatch ["5"]  = day5
+dispatch ["6"]  = day6
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 
