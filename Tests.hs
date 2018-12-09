@@ -10,6 +10,7 @@ import qualified Day5.Tests as Day5
 import qualified Day6.Tests as Day6
 import qualified Day7.Tests as Day7
 import qualified Day8.Tests as Day8
+import qualified Day9.Tests as Day9
 import           Test.Tasty (defaultMain, testGroup)
 
 main :: IO ()
@@ -38,4 +39,5 @@ main =
     , Day8.parsingtests
     , Day8.part1tests
     , Day8.part2tests
+    , Day9.part1tests
     ]

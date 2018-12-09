@@ -17,11 +17,13 @@ executable urdh-aoc2018
                      , Day6.Solutions, Day6.Parsing
                      , Day7.Solutions, Day7.Parsing
                      , Day8.Solutions, Day8.Parsing
+                     , Day9.Solutions
   build-depends:       base >=4.11 && <4.12
                      , file-embed
                      , containers
                      , time
                      , rset
+                     , pointedlist
   default-language:    Haskell2010
 
 test-suite urdh-aoc2018-tests
@@ -35,6 +37,7 @@ test-suite urdh-aoc2018-tests
                   , Day6.Solutions, Day6.Tests, Day6.Parsing
                   , Day7.Solutions, Day7.Tests, Day7.Parsing
                   , Day8.Solutions, Day8.Tests, Day8.Parsing
+                  , Day9.Solutions, Day9.Tests
   build-Depends:    base >= 3 && < 5
                   , tasty
                   , tasty-hunit
@@ -42,3 +45,4 @@ test-suite urdh-aoc2018-tests
                   , containers
                   , time
                   , rset
+                  , pointedlist

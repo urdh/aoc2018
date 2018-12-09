@@ -10,6 +10,7 @@ import qualified Day5.Solutions     as Day5
 import qualified Day6.Solutions     as Day6
 import qualified Day7.Solutions     as Day7
 import qualified Day8.Solutions     as Day8
+import qualified Day9.Solutions     as Day9
 import           System.Environment
 import           System.Exit
 
@@ -62,6 +63,13 @@ day8 = do
   putStrLn ("Day 8 -- Sum of all leaf nodes: " ++ show (Day8.part1 Day8.input))
   putStrLn ("Day 8 -- Root node value: " ++ show (Day8.part2 Day8.input))
 
+day9 :: IO ()
+day9 = do
+  putStrLn
+    ("Day 9 -- Winning score (1): " ++ show (uncurry Day9.part1 Day9.input))
+  putStrLn
+    ("Day 9 -- Winning score (2): " ++ show (uncurry Day9.part2 Day9.input))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -72,6 +80,7 @@ dispatch ["5"]  = day5
 dispatch ["6"]  = day6
 dispatch ["7"]  = day7
 dispatch ["8"]  = day8
+dispatch ["9"]  = day9
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 
