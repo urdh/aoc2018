@@ -8,10 +8,11 @@ module Day4.Solutions
 
 import           Data.FileEmbed
 import           Data.List
-import qualified Data.Map.Strict as Map
-import qualified Data.Set.Range  as Range
+import qualified Data.Map.Strict  as Map
+import qualified Data.Set.Range   as Range
 import           Data.Time
-import           Day4.Parsing    (Entry (..), Event (..), parseData)
+import           Day4.Parsing     (Entry (..), Event (..), parseData)
+import           Utilities.Tuples
 
 makeRanges :: [Entry] -> [(Int, [Range.Range Int])]
 makeRanges [] = []
@@ -34,9 +35,6 @@ coveringRange = foldr Range.union Range.empty . map return
 
 countElements :: (Ord a, Eq a) => [a] -> [(Int, a)]
 countElements = map (\l@(x:xs) -> (length l, x)) . groupBy (==) . sort
-
-mapsnd :: (b -> c) -> (a, b) -> (a, c)
-mapsnd f (x, y) = (x, (f y))
 
 part1 :: [Entry] -> (Int, Int)
 part1 = mapsnd commonMinute . bestGuard

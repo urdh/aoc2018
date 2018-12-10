@@ -11,13 +11,8 @@ import           Data.Char
 import           Data.FileEmbed
 import           Data.Function
 import           Data.List
-import           Day7.Parsing   (parseData)
-
-mapfst :: (a -> c) -> (a, b) -> (c, b)
-mapfst f (x, y) = ((f x), y)
-
-mapsnd :: (b -> c) -> (a, b) -> (a, c)
-mapsnd f (x, y) = (x, (f y))
+import           Day7.Parsing     (parseData)
+import           Utilities.Tuples
 
 addTime :: Int -> [(Char, [Char])] -> [((Char, Int), [Char])]
 addTime base = map (mapfst (ap (,) (subtract (64 - base) . ord)))
