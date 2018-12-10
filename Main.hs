@@ -3,6 +3,7 @@ module Main
   ) where
 
 import qualified Day1.Solutions     as Day1
+import qualified Day10.Solutions    as Day10
 import qualified Day2.Solutions     as Day2
 import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
@@ -70,6 +71,12 @@ day9 = do
   putStrLn
     ("Day 9 -- Winning score (2): " ++ show (uncurry Day9.part2 Day9.input))
 
+day10 :: IO ()
+day10 = do
+  putStr ("Day 10 -- Revealed message:\n" ++ (Day10.part1 Day10.input))
+  putStrLn
+    ("Day 10 -- Time until message appears: " ++ show (Day10.part2 Day10.input))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -81,6 +88,7 @@ dispatch ["6"]  = day6
 dispatch ["7"]  = day7
 dispatch ["8"]  = day8
 dispatch ["9"]  = day9
+dispatch ["10"] = day10
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 

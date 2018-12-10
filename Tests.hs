@@ -2,16 +2,17 @@ module Main
   ( main
   ) where
 
-import qualified Day1.Tests as Day1
-import qualified Day2.Tests as Day2
-import qualified Day3.Tests as Day3
-import qualified Day4.Tests as Day4
-import qualified Day5.Tests as Day5
-import qualified Day6.Tests as Day6
-import qualified Day7.Tests as Day7
-import qualified Day8.Tests as Day8
-import qualified Day9.Tests as Day9
-import           Test.Tasty (defaultMain, testGroup)
+import qualified Day1.Tests  as Day1
+import qualified Day10.Tests as Day10
+import qualified Day2.Tests  as Day2
+import qualified Day3.Tests  as Day3
+import qualified Day4.Tests  as Day4
+import qualified Day5.Tests  as Day5
+import qualified Day6.Tests  as Day6
+import qualified Day7.Tests  as Day7
+import qualified Day8.Tests  as Day8
+import qualified Day9.Tests  as Day9
+import           Test.Tasty  (defaultMain, testGroup)
 
 main :: IO ()
 main =
@@ -40,4 +41,7 @@ main =
     , Day8.part1tests
     , Day8.part2tests
     , Day9.part1tests
+    , Day10.parsingtests
+    , Day10.part1tests
+    , Day10.part2tests
     ]
