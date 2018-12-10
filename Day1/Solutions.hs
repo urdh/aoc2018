@@ -8,13 +8,8 @@ module Day1.Solutions
   ) where
 
 import           Data.FileEmbed
-
-parseIntegers :: String -> [Int]
-parseIntegers = map (readInt . stripPlus) . words
-  where
-    readWords = fmap words . readFile
-    stripPlus = dropWhile (('+') ==)
-    readInt = read :: String -> Int
+import           Text.ParserCombinators.ReadP
+import           Utilities.Parsing
 
 duplicates :: (Num a, Eq a) => [a] -> [a]
 duplicates = (dups [])
@@ -31,4 +26,4 @@ part2 :: [Int] -> Int
 part2 = head . duplicates . scanl1 (+) . (0 :) . cycle
 
 input :: [Int]
-input = parseIntegers $(embedStringFile "Day1/input.txt")
+input = map (parse integer) . lines $ $(embedStringFile "Day1/input.txt")

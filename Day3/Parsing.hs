@@ -3,20 +3,15 @@ module Day3.Parsing
   , parseLine
   ) where
 
-import           Control.Monad
 import           Data.List
 import           Text.ParserCombinators.ReadP
+import           Utilities.Parsing
 
 data Rectangle = Rectangle
   { position :: (Int, Int)
   , width    :: Int
   , height   :: Int
   } deriving (Eq, Show)
-
-integer :: ReadP Int
-integer = fmap read (many1 digit)
-  where
-    digit = satisfy (liftM2 (&&) (>= '0') (<= '9'))
 
 event :: ReadP (Int, Rectangle)
 event = do
@@ -27,7 +22,6 @@ event = do
   satisfy (== ',')
   y <- integer
   satisfy (== ':')
-  skipSpaces
   w <- integer
   satisfy (== 'x')
   h <- integer
@@ -35,4 +29,4 @@ event = do
   return (i, (Rectangle (x, y) w h))
 
 parseLine :: String -> (Int, Rectangle)
-parseLine = fst . head . readP_to_S event
+parseLine = parse event

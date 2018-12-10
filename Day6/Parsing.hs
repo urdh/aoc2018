@@ -4,22 +4,16 @@ module Day6.Parsing
   , parseData
   ) where
 
-import qualified Control.Monad                as Monad
 import           Data.List
 import           Text.ParserCombinators.ReadP
+import           Utilities.Parsing
 
 type Point = (Int, Int)
-
-integer :: ReadP Int
-integer = fmap read (many1 digit)
-  where
-    digit = satisfy (Monad.liftM2 (&&) (>= '0') (<= '9'))
 
 point :: ReadP Point
 point = do
   x <- integer
   satisfy (== ',')
-  skipSpaces
   y <- integer
   eof
   return (x, y)

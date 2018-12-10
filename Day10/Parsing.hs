@@ -3,47 +3,27 @@ module Day10.Parsing
   , parseData
   ) where
 
-import           Control.Monad
 import           Data.Array
-import           Data.Function
-import           Data.List
-import           Data.Tuple
 import           Text.ParserCombinators.ReadP
+import           Utilities.Parsing
 
 data Point = Point
   { position :: (Int, Int)
   , velocity :: (Int, Int)
   } deriving (Eq, Show)
 
-integer :: ReadP Int
-integer = fmap read (skipSpaces >> choice [prefixed, unprefixed])
-  where
-    digit = satisfy (\char -> char >= '0' && char <= '9')
-    sign = choice [char '+', char '-']
-    prefixed = (:) <$> sign <*> unprefixed
-    unprefixed = (many1 digit)
-
-pair :: ReadP (Int, Int)
-pair = do
-  satisfy (== '<')
-  a <- integer
-  satisfy (== ',')
-  b <- integer
-  satisfy (== '>')
-  return (a, b)
-
 point :: ReadP Point
 point = do
   string "position="
-  pos <- pair
+  pos <- pair '<' integer '>'
   skipSpaces
   string "velocity="
-  vel <- pair
+  vel <- pair '<' integer '>'
   eof
   return (Point pos vel)
 
 parseLine :: String -> Point
-parseLine s = head [x | (x, "") <- (readP_to_S point s)]
+parseLine = parse point
 
 parseData :: [String] -> [Point]
 parseData = (map parseLine)

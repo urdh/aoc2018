@@ -6,6 +6,7 @@ module Day7.Parsing
 import           Data.List
 import qualified Data.Map.Strict              as Map
 import           Text.ParserCombinators.ReadP
+import           Utilities.Parsing
 
 dependency :: ReadP [(Char, [Char])]
 dependency = do
@@ -18,7 +19,7 @@ dependency = do
   return [(b, [a]), (a, [])]
 
 parseLine :: String -> [(Char, [Char])]
-parseLine = fst . head . (readP_to_S dependency)
+parseLine = parse dependency
 
 parseData :: [String] -> [(Char, [Char])]
 parseData =

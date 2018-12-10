@@ -3,19 +3,14 @@ module Day8.Parsing
   , parseData
   ) where
 
-import qualified Control.Monad                as Monad
 import           Data.List
 import           Text.ParserCombinators.ReadP
+import           Utilities.Parsing
 
 data Node = Node
   { children :: [Node]
   , metadata :: [Int]
   } deriving (Show, Eq)
-
-integer :: ReadP Int
-integer = fmap read (many1 digit)
-  where
-    digit = satisfy (Monad.liftM2 (&&) (>= '0') (<= '9'))
 
 meta :: ReadP Int
 meta = do
@@ -34,4 +29,4 @@ node = do
   return (Node children metadata)
 
 parseData :: String -> Node
-parseData = fst . head . readP_to_S node . (++ " ")
+parseData = parse node . (++ " ")
