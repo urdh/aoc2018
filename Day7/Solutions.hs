@@ -10,17 +10,17 @@ module Day7.Solutions
   , part2
   ) where
 
+import           Control.Arrow
 import           Control.Monad
 import           Data.Char
 import           Data.FileEmbed
 import           Data.Function
 import           Data.List
-import           Day7.Parsing     (parseData)
-import           Utilities.Tuples
+import           Day7.Parsing   (parseData)
 
 -- | Add time remaining to all items in the list.
 addTime :: Int -> [(Char, [Char])] -> [((Char, Int), [Char])]
-addTime base = map (mapfst (ap (,) (subtract (64 - base) . ord)))
+addTime base = map (first (ap (,) (subtract (64 - base) . ord)))
 
 -- | Find a given number of dependency-less items, sorted alphabetically.
 bestchars :: Int -> [((Char, Int), [Char])] -> [Char]
@@ -46,7 +46,7 @@ part1 m = [bestchar m] ++ (part1 (popchar (bestchar m) m))
       minimum .
       (map fst) .
       head . groupBy ((==) `on` (length . snd)) . sortOn (length . snd)
-    popchar c = (delete (c, [])) . map (mapsnd (delete c))
+    popchar c = (delete (c, [])) . map (second (delete c))
 
 -- | The second problem is more complicated. Now, we have to keep track of the time remaining
 --   on each item. Additionally, instead of popping one element, we pop at most N items with
@@ -62,9 +62,9 @@ part2 n b = (helper n) . (addTime b)
       (helper
          n
          (foldr (.) id (map (popchar) (donechars m)) .
-          (map (mapfst (decchar (bestchars n m)))) $
+          (map (first (decchar (bestchars n m)))) $
           m))
-    popchar c = (delete ((c, 0), [])) . map (mapsnd (delete c))
+    popchar c = (delete ((c, 0), [])) . map (second (delete c))
     decchar cs (c, i)
       | elem c cs = (c, (i - 1))
       | otherwise = (c, i)

@@ -10,13 +10,13 @@ module Day4.Solutions
   , part2
   ) where
 
+import           Control.Arrow
 import           Data.FileEmbed
 import           Data.List
-import qualified Data.Map.Strict  as Map
-import qualified Data.Set.Range   as Range
+import qualified Data.Map.Strict as Map
+import qualified Data.Set.Range  as Range
 import           Data.Time
-import           Day4.Parsing     (Entry (..), Event (..), parseData)
-import           Utilities.Tuples
+import           Day4.Parsing    (Entry (..), Event (..), parseData)
 
 -- | Given a list of corresponding 'FallAsleep', 'WakeUp' pairs, construct a list of range sets.
 makeRanges :: [Entry] -> [(Int, [Range.Range Int])]
@@ -52,7 +52,7 @@ countElements = map (\l@(x:xs) -> (length l, x)) . groupBy (==) . sort
 --   The best minute is then given by collapsing the range set to a list of minutes, and finding
 --   the most common one (the mode).
 part1 :: [Entry] -> (Int, Int)
-part1 = mapsnd commonMinute . bestGuard
+part1 = second commonMinute . bestGuard
   where
     bestGuard = last . sortOn (Range.size . snd) . mergeData
     commonMinute = snd . maximum . countElements . Range.toList
@@ -61,10 +61,10 @@ part1 = mapsnd commonMinute . bestGuard
 --   can be solved by collapsing all range set into points and finding the guard with the largest
 --   mode.
 part2 :: [Entry] -> (Int, Int)
-part2 = mapsnd snd . last . sortOn (fst . snd) . bestMinute
+part2 = second snd . last . sortOn (fst . snd) . bestMinute
   where
     bestMinute =
-      map (mapsnd (maximum . countElements . Range.toList)) . mergeData
+      map (second (maximum . countElements . Range.toList)) . mergeData
 
 -- | The input to this problem is a set of log entries describing the actions of a group
 --   of guards. Each guard has an ID, and the (sorted) list has been pre-processed to assign
