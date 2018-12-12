@@ -21,6 +21,7 @@ executable urdh-aoc2018
                      , Day9.Solutions
                      , Day10.Solutions, Day10.Parsing
                      , Day11.Solutions
+                     , Day12.Solutions, Day12.Parsing
   build-depends:       base >=4.11 && <4.12
                      , file-embed
                      , containers
@@ -45,6 +46,7 @@ test-suite urdh-aoc2018-tests
                   , Day9.Solutions, Day9.Tests
                   , Day10.Solutions, Day10.Tests, Day10.Parsing
                   , Day11.Solutions, Day11.Tests
+                  , Day12.Solutions, Day12.Tests, Day12.Parsing
   build-Depends:    base >= 3 && < 5
                   , tasty
                   , tasty-hunit

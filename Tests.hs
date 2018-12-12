@@ -5,6 +5,7 @@ module Main
 import qualified Day1.Tests      as Day1
 import qualified Day10.Tests     as Day10
 import qualified Day11.Tests     as Day11
+import qualified Day12.Tests     as Day12
 import qualified Day2.Tests      as Day2
 import qualified Day3.Tests      as Day3
 import qualified Day4.Tests      as Day4
@@ -50,4 +51,7 @@ main =
     , Day10.part2tests
     , Day11.part1tests
     , Day11.part2tests
+    , Day12.parsingtests
+    , Day12.part1tests
+    , Day12.part2tests
     ]
