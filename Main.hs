@@ -6,6 +6,7 @@ import qualified Day1.Solutions     as Day1
 import qualified Day10.Solutions    as Day10
 import qualified Day11.Solutions    as Day11
 import qualified Day12.Solutions    as Day12
+import qualified Day13.Solutions    as Day13
 import qualified Day2.Solutions     as Day2
 import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
@@ -93,6 +94,13 @@ day12 = do
     ("Day 12 -- Plant position sum after 5 billion generations: " ++
      show (Day12.part2 Day12.input))
 
+day13 :: IO ()
+day13 = do
+  putStrLn
+    ("Day 13 -- First collision: " ++ show (uncurry Day13.part1 Day13.input))
+  putStrLn
+    ("Day 13 -- Last remaining cart: " ++ show (uncurry Day13.part2 Day13.input))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -107,6 +115,7 @@ dispatch ["9"]  = day9
 dispatch ["10"] = day10
 dispatch ["11"] = day11
 dispatch ["12"] = day12
+dispatch ["13"] = day13
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 
