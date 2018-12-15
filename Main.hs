@@ -7,6 +7,7 @@ import qualified Day10.Solutions    as Day10
 import qualified Day11.Solutions    as Day11
 import qualified Day12.Solutions    as Day12
 import qualified Day13.Solutions    as Day13
+import qualified Day14.Solutions    as Day14
 import qualified Day2.Solutions     as Day2
 import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
@@ -101,6 +102,12 @@ day13 = do
   putStrLn
     ("Day 13 -- Last remaining cart: " ++ show (uncurry Day13.part2 Day13.input))
 
+day14 :: IO ()
+day14 = do
+  putStrLn ("Day 14 -- Recipe scores: " ++ show (Day14.part1 Day14.input))
+  putStrLn
+    ("Day 14 -- Number of recipes: " ++ show (Day14.part2 (show Day14.input)))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -116,6 +123,7 @@ dispatch ["10"] = day10
 dispatch ["11"] = day11
 dispatch ["12"] = day12
 dispatch ["13"] = day13
+dispatch ["14"] = day14
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 
