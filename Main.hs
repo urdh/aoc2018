@@ -9,6 +9,7 @@ import qualified Day12.Solutions    as Day12
 import qualified Day13.Solutions    as Day13
 import qualified Day14.Solutions    as Day14
 import qualified Day16.Solutions    as Day16
+import qualified Day18.Solutions    as Day18
 import qualified Day2.Solutions     as Day2
 import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
@@ -115,6 +116,11 @@ day16 = do
     ("Day 16 -- Multi-opcode samples: " ++ show (Day16.part1 Day16.input))
   putStrLn ("Day 16 -- Program output: " ++ show (Day16.part2 Day16.input))
 
+day18 :: IO ()
+day18 = do
+  putStrLn ("Day 18 -- Resource value: " ++ show (Day18.part1 Day18.input))
+  putStrLn ("Day 18 -- Resource value: " ++ show (Day18.part2 Day18.input))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -132,6 +138,7 @@ dispatch ["12"] = day12
 dispatch ["13"] = day13
 dispatch ["14"] = day14
 dispatch ["16"] = day16
+dispatch ["18"] = day18
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 
