@@ -25,6 +25,7 @@ executable urdh-aoc2018
                      , Day13.Solutions, Day13.Parsing
                      , Day14.Solutions
                      , Day16.Solutions, Day16.Parsing
+                     , Day17.Solutions, Day17.Parsing
                      , Day18.Solutions, Day18.Parsing
                      , Day19.Solutions, Day19.Parsing
   build-depends:       base >= 3 && < 5
@@ -57,6 +58,7 @@ test-suite urdh-aoc2018-tests
                   , Day13.Solutions, Day13.Tests, Day13.Parsing
                   , Day14.Solutions, Day14.Tests
                   , Day16.Solutions, Day16.Tests, Day16.Parsing
+                  , Day17.Solutions, Day17.Tests, Day17.Parsing
                   , Day18.Solutions, Day18.Tests, Day18.Parsing
                   , Day19.Solutions, Day19.Tests, Day19.Parsing
   build-Depends:    base >= 3 && < 5

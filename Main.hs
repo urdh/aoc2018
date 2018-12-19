@@ -9,6 +9,7 @@ import qualified Day12.Solutions    as Day12
 import qualified Day13.Solutions    as Day13
 import qualified Day14.Solutions    as Day14
 import qualified Day16.Solutions    as Day16
+import qualified Day17.Solutions    as Day17
 import qualified Day18.Solutions    as Day18
 import qualified Day19.Solutions    as Day19
 import qualified Day2.Solutions     as Day2
@@ -117,6 +118,12 @@ day16 = do
     ("Day 16 -- Multi-opcode samples: " ++ show (Day16.part1 Day16.input))
   putStrLn ("Day 16 -- Program output: " ++ show (Day16.part2 Day16.input))
 
+day17 :: IO ()
+day17 = do
+  putStrLn ("Day 17 -- Number of wet tiles: " ++ show (Day17.part1 Day17.input))
+  putStrLn
+    ("Day 17 -- Number of at-rest tiles: " ++ show (Day17.part2 Day17.input))
+
 day18 :: IO ()
 day18 = do
   putStrLn ("Day 18 -- Resource value: " ++ show (Day18.part1 Day18.input))
@@ -144,6 +151,7 @@ dispatch ["12"] = day12
 dispatch ["13"] = day13
 dispatch ["14"] = day14
 dispatch ["16"] = day16
+dispatch ["17"] = day17
 dispatch ["18"] = day18
 dispatch ["19"] = day19
 dispatch [_]    = exitFailure
