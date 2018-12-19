@@ -10,6 +10,7 @@ import qualified Day13.Tests     as Day13
 import qualified Day14.Tests     as Day14
 import qualified Day16.Tests     as Day16
 import qualified Day18.Tests     as Day18
+import qualified Day19.Tests     as Day19
 import qualified Day2.Tests      as Day2
 import qualified Day3.Tests      as Day3
 import qualified Day4.Tests      as Day4
@@ -65,4 +66,6 @@ main =
     , Day14.part2tests
     , Day16.parsingtests
     , Day18.part1tests
+    , Day19.parsingtests
+    , Day19.part1tests
     ]
