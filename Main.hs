@@ -13,6 +13,7 @@ import qualified Day17.Solutions    as Day17
 import qualified Day18.Solutions    as Day18
 import qualified Day19.Solutions    as Day19
 import qualified Day2.Solutions     as Day2
+import qualified Day20.Solutions    as Day20
 import qualified Day3.Solutions     as Day3
 import qualified Day4.Solutions     as Day4
 import qualified Day5.Solutions     as Day5
@@ -134,6 +135,15 @@ day19 = do
   putStrLn ("Day 19 -- Program output: " ++ show (Day19.part1 Day19.input))
   putStrLn ("Day 19 -- Program output: " ++ show (Day19.part2 Day19.input))
 
+day20 :: IO ()
+day20 = do
+  putStrLn
+    ("Day 20 -- Distance to furthest-away room: " ++
+     show (Day20.part1 Day20.input))
+  putStrLn
+    ("Day 20 -- Number of rooms at least 100 doors away: " ++
+     show (Day20.part2 Day20.input))
+
 dispatch :: [String] -> IO ()
 dispatch []     = exitSuccess
 dispatch ["1"]  = day1
@@ -154,6 +164,7 @@ dispatch ["16"] = day16
 dispatch ["17"] = day17
 dispatch ["18"] = day18
 dispatch ["19"] = day19
+dispatch ["20"] = day20
 dispatch [_]    = exitFailure
 dispatch (x:xs) = dispatch [x] >> dispatch xs
 

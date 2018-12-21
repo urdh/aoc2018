@@ -28,6 +28,7 @@ executable urdh-aoc2018
                      , Day17.Solutions, Day17.Parsing
                      , Day18.Solutions, Day18.Parsing
                      , Day19.Solutions, Day19.Parsing
+                     , Day20.Solutions, Day20.Parsing
   build-depends:       base >= 3 && < 5
                      , file-embed
                      , containers
@@ -35,6 +36,7 @@ executable urdh-aoc2018
                      , rset
                      , pointedlist
                      , array
+                     , algebraic-graphs
   ghc-options:
     -O3 -threaded
   default-language:    Haskell2010
@@ -61,6 +63,7 @@ test-suite urdh-aoc2018-tests
                   , Day17.Solutions, Day17.Tests, Day17.Parsing
                   , Day18.Solutions, Day18.Tests, Day18.Parsing
                   , Day19.Solutions, Day19.Tests, Day19.Parsing
+                  , Day20.Solutions, Day20.Tests, Day20.Parsing
   build-Depends:    base >= 3 && < 5
                   , tasty
                   , tasty-hunit
@@ -70,5 +73,7 @@ test-suite urdh-aoc2018-tests
                   , rset
                   , pointedlist
                   , array
+                  , algebraic-graphs
   ghc-options:
     -O2 -threaded
+  default-language:    Haskell2010
