@@ -29,6 +29,7 @@ executable urdh-aoc2018
                      , Day18.Solutions, Day18.Parsing
                      , Day19.Solutions, Day19.Parsing
                      , Day20.Solutions, Day20.Parsing
+                     , Day21.Solutions
   build-depends:       base >= 3 && < 5
                      , file-embed
                      , containers
